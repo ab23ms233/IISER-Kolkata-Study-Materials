@@ -10,26 +10,21 @@ int INCVAL(int num)
     return num;
 }
 
-int INCREF(int *ptr)
+void INCREF(int *ptr)
 {
     (*ptr)++;
-    return *ptr;
 }
 
 void main()
 {
     int num_1 = 8;
-    // int *ptr = &num_1;
-
-    // printf("%p\n", ptr);
-    // printf("%d", *ptr);
     int num_2 = 9;
 
     int num_1_inc = INCVAL(num_1);
-    int num_2_inc = INCREF(&num_2);
+    INCREF(&num_2);
 
     printf("Local Variable num_1: %d\n", num_1);
     printf("Local Variable num_2: %d\n", num_2);
     printf("INCVAL incremented value: %d\n", num_1_inc);
-    printf("INCREF incremented value: %d\n", num_2_inc);
+    printf("INCREF incremented value: %d\n", num_2);
 }

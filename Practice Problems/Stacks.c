@@ -16,10 +16,8 @@ int isEmpty()
     {
         return 1;
     }
-    else
-    {
-        return 0;
-    }
+    
+    return 0;
 }
 
 // Function to check if Stack is full
@@ -31,10 +29,8 @@ int isFull()
     {
         return 1;
     }
-    else
-    {
-        return 0;
-    }
+    
+    return 0;
 }
 
 // Function to add element to the top of the stack
@@ -76,4 +72,20 @@ int peek()
     }
 
     return stack_arr[top];
+}
+
+// Function to display all elements of a stack
+void display()
+{
+    if (isEmpty())
+    {
+        printf("Stack Underflow\n");
+        return;
+    }
+
+    for (int i = 0; i <= top; i++)
+    {
+        printf("%d ", stack_arr[i]);
+    }
+    printf("\n");
 }

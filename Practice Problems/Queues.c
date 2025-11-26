@@ -82,3 +82,8 @@ int peek()
 
     return queue_arr[front];
 }
+
+void main()
+{
+    push(2);
+}

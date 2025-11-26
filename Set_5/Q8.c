@@ -5,7 +5,8 @@
 #include <stdio.h>
 #include <string.h>
 
-int count(char *str_ptr, char counting_char)
+// Function to calculate number of occurences of 'counting_char' in string with pointer str_ptr 
+int count(const char *str_ptr, char counting_char)
 {
     int count = 0;
     int i = 0;
@@ -23,6 +24,7 @@ int count(char *str_ptr, char counting_char)
     return count;
 }
 
+// Function to replace a character (character_to_replace) by another character (replacing_char) in string with pointer str_ptr
 void replace(char *str_ptr, char character_to_replace, char replacing_char)
 {
     int i = 0;
@@ -38,20 +40,21 @@ void replace(char *str_ptr, char character_to_replace, char replacing_char)
     }
 }
 
+
 void main()
 {
-    char str[30];
+    char str[40];
     char counting_char;
     char character_to_replace;
     char replacing_char;
 
-    // strcpy(str, "Arya is a good boy");
-    // counting_char = 'o';
-
     char *ptr = str;
+    // strcpy(str, "Programming in C language");
 
     printf("Enter string: ");
-    gets(str);
+    fgets(str, sizeof(str), stdin);
+    str[strcspn(str, "\n")] = 0; // To remove trailing newline character
+
     printf("Enter character to count: ");
     scanf(" %c", &counting_char);
     printf("\n");

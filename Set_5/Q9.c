@@ -46,7 +46,7 @@ int isPrime(int num)
         return 1;
     }
 
-    int factors = (int)pow(num, 0.5);
+    int factors = (int) pow(num, 0.5);
     for (int i = 2; i <= factors; i++)
     {
         if (num % i == 0)
@@ -57,6 +57,7 @@ int isPrime(int num)
 
     return 1;
 }
+
 
 void main()
 {

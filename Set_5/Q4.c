@@ -16,7 +16,7 @@ void grace_marks(int array[], int size)
     }
 }
 
-// Function to print an array 
+// Function to print an array
 void print_array(int array[], int size)
 {
     for (int i = 0; i < size; i++)
@@ -31,11 +31,11 @@ void main()
     // Taking array as user input
     int size = 5;
     int marks[size];
+    int element;
 
     for (int i = 0; i < size; i++)
     {
-        int element;
-        printf("Enter marks %d: ", i+1);
+        printf("Enter marks %d: ", i + 1);
         scanf("%d", &element);
 
         marks[i] = element;

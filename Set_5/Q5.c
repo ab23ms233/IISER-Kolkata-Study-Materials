@@ -5,7 +5,7 @@
 #include <stdio.h>
 
 // Function to find average of integer array
-float AVGINTARRAY(int array[], int size)
+float AVGINTARRAY(const int array[], int size)
 {
     int sum = 0;
 
@@ -17,7 +17,7 @@ float AVGINTARRAY(int array[], int size)
     return (float)sum / size;
 }
 
-// Function to print an array 
+// Function to print an array
 void print_array(int array[], int size)
 {
     for (int i = 0; i < size; i++)
@@ -30,12 +30,13 @@ void print_array(int array[], int size)
 void main()
 {
     // Taking array as user input
-    int size = 5;
+    const int size = 5;
     int numbers[size];
+    int element;
 
-    for (int i = 0; i < size; i++) {
-        int element;
-        printf("Enter number %d: ", i+1);
+    for (int i = 0; i < size; i++)
+    {
+        printf("Enter number %d: ", i + 1);
         scanf("%d", &element);
 
         numbers[i] = element;

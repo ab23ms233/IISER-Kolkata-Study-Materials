@@ -5,14 +5,16 @@
 #include <stdio.h>
 #include <string.h>
 
-struct Student
+// Creating a structure named Student
+typedef struct Student
 {
     char name[20];
     int roll;
     float CGPA;
-};
+} student;
 
-float findCGPA(struct Student *students, int size, int roll)
+// Function to find CGPA of a given roll number from an array of Student structs
+float findCGPA(const struct Student *students, int size, int roll)
 {
     for (int i = 0; i < size; i++)
     {
@@ -25,18 +27,18 @@ float findCGPA(struct Student *students, int size, int roll)
     return -1;
 }
 
+
 void main()
 {
-    struct Student students[5] = {{"Arya", 1, 8.5},
-                                  {"Soham", 2, 8},
-                                  {"Khushant", 3, 8.2},
-                                  {"Krishna", 4, 8.7},
-                                  {"Ananya", 5, 8.1}};
+    student students[5] = {{"Arya", 1, 8.5},
+                            {"Soham", 2, 8},
+                            {"Khushant", 3, 8.2},
+                            {"Krishna", 4, 8.7},
+                            {"Ananya", 5, 8.1}};
 
     int roll;
     printf("Enter roll number of student: ");
     scanf("%d", &roll);
-    printf("\n");
 
     float CGPA = findCGPA(students, 5, roll);
 
@@ -49,11 +51,4 @@ void main()
         printf("CGPA of roll %d: %0.2f", roll, CGPA);
     }
 
-    // while (students[i].name != NULL)
-    // {
-    //     printf("Name %d: %s\n", i+1, students[i].name);
-    //     printf("Roll %d: %d\n", i+1, students[i].roll);
-    //     printf("CGPA %d: %f\n", i+1, students[i].CGPA);
-    //     i++;
-    // }
 }
