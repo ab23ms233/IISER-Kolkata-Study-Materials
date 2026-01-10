@@ -1,0 +1,200 @@
+
+
+*******************************************************************************
+Thu Oct 16 23:58:21 2025
+
+
+FIT:    data read from "Photopeak_Cs-137.txt"
+        format = z
+        #datapoints = 63
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = A*exp((x-mu)**2/2*sigma**2)
+fitted parameters initialized with current variable values
+
+
+Current data point
+=========================
+#               = 1 out of 63
+x               = 26500          
+z               = 1299           
+
+Current set of parameters
+=========================
+A               = 26500          
+mu              = 258            
+sigma           = 10             
+
+BREAK: Undefined value during function evaluation
+
+*******************************************************************************
+Thu Oct 16 23:59:17 2025
+
+
+FIT:    data read from "Photopeak_Cs-137.txt" using 1:2
+        format = x:z
+        #datapoints = 63
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = A*exp((x-mu)**2/2*sigma**2)
+fitted parameters initialized with current variable values
+
+
+Current data point
+=========================
+#               = 1 out of 63
+x               = 26500          
+z               = 1299           
+
+Current set of parameters
+=========================
+A               = 26500          
+mu              = 258            
+sigma           = 10             
+
+BREAK: Undefined value during function evaluation
+
+*******************************************************************************
+Thu Oct 16 23:59:43 2025
+
+
+FIT:    data read from 'Photopeak_Cs-137.txt' using 1:2
+        format = x:z
+        #datapoints = 63
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = A*exp((x-mu)**2/2*sigma**2)
+fitted parameters initialized with current variable values
+
+
+Current data point
+=========================
+#               = 1 out of 63
+x               = 26500          
+z               = 1299           
+
+Current set of parameters
+=========================
+A               = 26500          
+mu              = 258            
+sigma           = 10             
+
+BREAK: Undefined value during function evaluation
+
+*******************************************************************************
+Fri Oct 17 00:01:37 2025
+
+
+FIT:    data read from 'Photopeak_Cs-137.txt' using 1:2
+        format = x:z
+        #datapoints = 63
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = A * exp(-(x-mu)**2/2*sigma**2)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   A             mu            sigma        
+   0 1.1026457800e+10   0.00e+00  1.86e+06    2.650000e+04   2.580000e+02   1.000000e+01
+   1 1.1026457800e+10   0.00e+00  1.86e+09    2.650000e+04   2.580000e+02   1.000000e+01
+
+After 1 iterations the fit converged.
+final sum of squares of residuals : 1.10265e+10
+rel. change during last iteration : 0
+
+degrees of freedom    (FIT_NDF)                        : 60
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 13556.3
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.83774e+08
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+A               = 26500            +/- 1.668e+16    (6.294e+13%)
+mu              = 258              +/- 1.684e+11    (6.528e+10%)
+sigma           = 10               +/- 2.786e+20    (2.786e+21%)
+
+correlation matrix of the fit parameters:
+                A      mu     sigma  
+A               1.000 
+mu              1.000  1.000 
+sigma           0.707  0.707  1.000 
+
+
+*******************************************************************************
+Fri Oct 17 00:03:46 2025
+
+
+FIT:    data read from "Photopeak_Cs-137.txt" using 1:2
+        format = x:z
+        #datapoints = 63
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = A * exp(-(x-mu)**2/(2*sigma**2))
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   A             mu            sigma        
+   0 8.9806421642e+07   0.00e+00  1.48e+05    2.650000e+04   2.580000e+02   1.000000e+01
+   5 3.3622451371e+07  -9.39e-02  1.48e+00    2.627752e+04   2.572863e+02   9.566311e+00
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 3.36225e+07
+rel. change during last iteration : -9.38986e-07
+
+degrees of freedom    (FIT_NDF)                        : 60
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 748.581
+variance of residuals (reduced chisquare) = WSSR/ndf   : 560374
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+A               = 26277.5          +/- 222.7        (0.8475%)
+mu              = 257.286          +/- 0.09363      (0.03639%)
+sigma           = 9.56631          +/- 0.09373      (0.9797%)
+
+correlation matrix of the fit parameters:
+                A      mu     sigma  
+A               1.000 
+mu              0.015  1.000 
+sigma          -0.578 -0.013  1.000 
+
+
+*******************************************************************************
+Fri Oct 17 00:05:12 2025
+
+
+FIT:    data read from "Photopeak_Cs-137.txt" using 1:2
+        format = x:z
+        #datapoints = 63
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = A * exp(-(x-mu)**2/(2*sigma**2)) + B
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   A             mu            sigma         B            
+   0 9.5532806870e+07   0.00e+00  1.30e+05    2.627752e+04   2.572863e+02   9.566311e+00   1.300000e+03
+   5 1.1584809163e+07  -2.69e-03  1.30e+00    2.543333e+04   2.573242e+02   8.934594e+00   1.223062e+03
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 1.15848e+07
+rel. change during last iteration : -2.68805e-08
+
+degrees of freedom    (FIT_NDF)                        : 59
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 443.117
+variance of residuals (reduced chisquare) = WSSR/ndf   : 196353
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+A               = 25433.3          +/- 157.8        (0.6204%)
+mu              = 257.324          +/- 0.05533      (0.0215%)
+sigma           = 8.93459          +/- 0.07721      (0.8641%)
+B               = 1223.06          +/- 110.3        (9.021%)
+
+correlation matrix of the fit parameters:
+                A      mu     sigma  B      
+A               1.000 
+mu              0.012  1.000 
+sigma          -0.007 -0.013  1.000 
+B              -0.503  0.005 -0.697  1.000 
