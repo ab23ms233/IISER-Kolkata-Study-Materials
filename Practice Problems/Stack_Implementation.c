@@ -6,6 +6,7 @@ void main()
     int choice;
     int repeat = 1;
     int element;
+    int quit = 0;
 
     while (repeat == 1)
     {
@@ -40,7 +41,7 @@ void main()
             break;
 
         case 5:
-            printf("Have a nice day\n");
+            quit = 1;
             break;
 
         default:
@@ -49,10 +50,17 @@ void main()
         }
         printf("\n");
 
+        if (quit == 1)
+        {
+            break;
+        }
+        
         printf("Do you want to continue?\n");
         printf("1. Yes\n");
         printf("2. No\n");
         scanf("%d", &repeat);
         printf("\n");
     }
+
+    printf("Have a nice day\n");
 }
