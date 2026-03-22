@@ -1,0 +1,11 @@
+>>> x,y = 1,2
+>>> def f(x):
+...     y=x+2
+...     print(x,y)
+...     return y
+... 
+>>> f(4)
+4 6
+6
+The local value of x is 4 and y is 6
+The global value of x is 1 and y is 2.

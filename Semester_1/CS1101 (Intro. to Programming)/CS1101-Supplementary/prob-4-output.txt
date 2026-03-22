@@ -1,0 +1,10 @@
+Enter 1st number: 25
+Enter 2nd number: 26
+Enter 3rd number: 54 
+Triangle cannot be formed with [25, 26, 54]
+
+Enter 1st number: 26
+Enter 2nd number: 24
+Enter 3rd number: 49
+Triangle can be formed with [26, 24, 49]
+

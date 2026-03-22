@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+#C/C++
+*.o
+*.out
+*.exe
+*.a
+
+# Log and temp files
+*.log
+*.tmp
+
+# IDE/Editor
+.vscode/

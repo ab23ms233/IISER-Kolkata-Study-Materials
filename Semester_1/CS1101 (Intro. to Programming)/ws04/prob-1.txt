@@ -1,0 +1,38 @@
+>>> a, b = 0.0,3//5
+>>> a == b
+True
+>>> a is b
+False
+
+a == b checks whether a and b have the same value or not, which is true as 3//5 = 0.
+a is b checks for the value as well as the data type. They have the same value but a=0.0 is float whereas b = 3//5 = 0 is integer.
+
+>>> a,b,k = 0,20,0
+>>> while a<b:
+...     b-=3
+...     k+=1
+... print(k-1)
+  File "<stdin>", line 4
+    print(k-1)
+    ^^^^^
+SyntaxError: invalid syntax
+>>> while a<b:
+...     b-=3
+...     k+=1
+... 
+>>> print(k-1)
+6
+
+It signifies that we can subtract 3 from 20, 6 times before it becomes less than 0. 
+
+>>> 5//2
+2
+>>> n = int(input("Enter a number: "))
+Enter a number: 45
+>>> m = int(input("Enter another number: "))
+Enter another number: 15
+>>> if n%m==0:
+...     print(f"{n} is an exact multiple of {m}")
+... 
+45 is an exact multiple of 15
+

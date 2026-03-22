@@ -1,0 +1,3 @@
+Enter the dividend: 57
+Enter the divisor: 5
+Quotient is 11 and remainder is 2

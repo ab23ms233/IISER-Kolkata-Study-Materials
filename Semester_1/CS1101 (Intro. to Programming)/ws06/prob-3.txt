@@ -1,0 +1,5 @@
+gnuplot> plot [0:6*pi][-1:1] sin(x)
+gnuplot> set xlabel "Theta(in radian)"
+gnuplot> set ylabel "Value of sine functions"
+gnuplot> set title "Plot of powers of sine function"
+

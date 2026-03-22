@@ -1,0 +1,4 @@
+Computed value of ln(0.75) is -0.28768194894942023
+Actual value of ln(0.75) is -0.2876820724517809
+Number of terms is 9
+Difference is 1.2350236067160125e-07

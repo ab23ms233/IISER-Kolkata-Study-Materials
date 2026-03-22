@@ -1,0 +1,29 @@
+gnuplot> plot "data1.txt"
+gnuplot> f(x) = m*x + c
+gnuplot> fit f(x) "data1.txt" u 1:2 via m,c
+iter      chisq       delta/lim  lambda   m             c            
+   0 3.8915800000e+01   0.00e+00  1.06e+00    1.000000e+00   1.000000e+00
+   1 4.2445555433e-02  -9.16e+07  1.06e-01    2.718728e-01   4.002328e-01
+   2 1.5275796490e-02  -1.78e+05  1.06e-02    2.452946e-01   3.919747e-01
+   3 1.5275789474e-02  -4.59e-02  1.06e-03    2.452632e-01   3.920000e-01
+iter      chisq       delta/lim  lambda   m             c            
+
+After 3 iterations the fit converged.
+final sum of squares of residuals : 0.0152758
+rel. change during last iteration : -4.59279e-07
+
+degrees of freedom    (FIT_NDF)                        : 18
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0291317
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000848655
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+m               = 0.245263         +/- 0.0113       (4.606%)
+c               = 0.392            +/- 0.01255      (3.203%)
+
+correlation matrix of the fit parameters:
+                m      c      
+m               1.000 
+c              -0.855  1.000 
+gnuplot> plot f(x), "data1.txt" 
+

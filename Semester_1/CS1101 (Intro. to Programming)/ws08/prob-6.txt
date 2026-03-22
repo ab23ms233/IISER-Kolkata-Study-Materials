@@ -1,0 +1,79 @@
+gnuplot> plot "data3.dat"
+gnuplot> f(x) = m*x+c
+gnuplot> fit f(x) "data3.dat" u (($1)**2):(($2)**2) via m,c
+iter      chisq       delta/lim  lambda   m             c            
+   0 5.4624812956e+03   0.00e+00  3.05e+00   -6.350905e-01  -5.953367e-02
+   1 3.1029548725e+03  -7.60e+04  3.05e-01    7.502886e-01   1.321017e-02
+   2 1.5120165389e+03  -1.05e+05  3.05e-02    2.369215e-01   4.997978e+00
+   3 2.1026864395e+00  -7.18e+07  3.05e-03   -9.857270e-01   1.625872e+01
+   4 1.3317424856e+00  -5.79e+04  3.05e-04   -1.013979e+00   1.651893e+01
+   5 1.3317424445e+00  -3.09e-03  3.05e-05   -1.013986e+00   1.651899e+01
+iter      chisq       delta/lim  lambda   m             c            
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 1.33174
+rel. change during last iteration : -3.09099e-08
+
+degrees of freedom    (FIT_NDF)                        : 23
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.240628
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.0579018
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+m               = -1.01399         +/- 0.01049      (1.035%)
+c               = 16.519           +/- 0.07133      (0.4318%)
+
+correlation matrix of the fit parameters:
+                m      c      
+m               1.000 
+c              -0.738  1.000 
+gnuplot> plot f(x), "data3.dat" u (($1)**2):(($2)**2)
+gnuplot> set title "m = -1.0.1399 ; c = 16.519"
+gnuplot> replot
+gnuplot> 
+gnuplot> 
+gnuplot> 
+
+
+
+
+
+
+gnuplot> 
+gnuplot> f(x) = sqrt(a-b*x**2)
+gnuplot> fit f(x) "data3.dat" u 1:2 via a,b
+iter      chisq       delta/lim  lambda   a             b            
+   0 2.3874370408e+02   0.00e+00  3.44e-01    1.024197e+00   6.943508e-01
+   1 1.6196848265e+02  -4.74e+04  3.44e-02    6.543095e+00   2.533299e+00
+   2 1.2402616338e+02  -3.06e+04  3.44e-03    1.618151e+01   5.400204e+00
+   3 6.8540301565e+01  -8.10e+04  3.44e-04    1.735918e+01   2.962334e+00
+   4 5.1199354457e+01  -3.39e+04  3.44e-05    1.879494e+01   2.604405e+00
+   5 1.7317190387e+01  -1.96e+05  3.44e-06    1.726044e+01   1.536959e+00
+   6 2.4065127783e+00  -6.20e+05  3.44e-07    1.684600e+01   1.161161e+00
+   7 5.2752607646e-02  -4.46e+06  3.44e-08    1.659565e+01   1.038251e+00
+   8 2.4787686950e-02  -1.13e+05  3.44e-09    1.652291e+01   1.015202e+00
+   9 2.4748856645e-02  -1.57e+02  3.44e-10    1.651930e+01   1.014239e+00
+  10 2.4748853038e-02  -1.46e-02  3.44e-11    1.651927e+01   1.014232e+00
+iter      chisq       delta/lim  lambda   a             b            
+
+After 10 iterations the fit converged.
+final sum of squares of residuals : 0.0247489
+rel. change during last iteration : -1.45767e-07
+
+degrees of freedom    (FIT_NDF)                        : 23
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.032803
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.00107604
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 16.5193          +/- 0.07026      (0.4253%)
+b               = 1.01423          +/- 0.006949     (0.6851%)
+
+correlation matrix of the fit parameters:
+                a      b      
+a               1.000 
+b               0.853  1.000 
+gnuplot> plot f(x), "data3.dat"
+gnuplot> set title "a = 16.5193 ; b = 1.01423"
+gnuplot> replot
+

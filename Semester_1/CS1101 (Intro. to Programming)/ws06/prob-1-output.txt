@@ -1,0 +1,4 @@
+Calculated value of pi is 3.1410926536210413
+Actual value of pi is 3.141592653589793
+Number of terms required is 2000
+Difference is 0.0004999999687518297

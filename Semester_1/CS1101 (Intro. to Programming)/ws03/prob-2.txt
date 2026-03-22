@@ -1,0 +1,21 @@
+>>> x = "The quick brown fox jumps over the lazy dog"
+>>> "fox" in x
+True
+>>> print(x[::-1])
+god yzal eht revo spmuj xof nworb kciuq ehT
+>>> print(x[2::3])
+eukrnojporhlyo
+>>> print(x[3::4])
+ cr  pvtl 
+>>> len(x)
+43
+>>> x[::-2]
+'gdya h eosmjxfnobkiqeT'
+>>> y = x[:4]
+>>> z = x[-3:]
+>>> y+z
+'The dog'
+>>> y*10
+'The The The The The The The The The The '
+>>> 
+

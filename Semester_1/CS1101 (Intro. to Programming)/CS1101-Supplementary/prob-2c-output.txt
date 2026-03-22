@@ -1,0 +1,1 @@
+Armstrong numbers are [1, 153, 371]

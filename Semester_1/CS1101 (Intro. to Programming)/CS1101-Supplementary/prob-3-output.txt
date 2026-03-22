@@ -1,0 +1,8 @@
+Enter a number: 254
+Quotient: 63; Remainder: 2
+Quotient: 63; Remainder: 2
+
+Enter a number: 124
+Quotient: 31; Remainder: 0
+Quotient: 31; Remainder: 0
+

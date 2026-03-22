@@ -1,0 +1,2 @@
+Enter a number: 43
+43 is a prime number

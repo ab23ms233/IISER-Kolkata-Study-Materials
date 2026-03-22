@@ -1,0 +1,4 @@
+Enter first side: 34
+Enter second side: 87
+Enter third side: 121
+False
