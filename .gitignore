@@ -16,3 +16,6 @@ __pycache__/
 
 # IDE/Editor
 .vscode/
+
+# Zip files
+*.zip

@@ -1,6 +1,7 @@
 # QUESTION
 # Write a Python function that takes two lists and returns True if they have at least one common member.
 
+# Function to check common elements in two lists
 def common(l1: list, l2: list):
     set_1 = set(l1)
     set_2 = set(l2)

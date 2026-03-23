@@ -3,13 +3,16 @@
 
 import math
 
+# Defining function
 def f(x):
     return math.sin(x) + x**2 - 1
 
+# Defining parameters
 step = 0.05
 start, stop = 0,1.01
 x_val = start
 
+# Tabulation method
 while x_val <= stop:
     y_val = f(x_val)
     print(f"{round(x_val, 2)}  {y_val}")
