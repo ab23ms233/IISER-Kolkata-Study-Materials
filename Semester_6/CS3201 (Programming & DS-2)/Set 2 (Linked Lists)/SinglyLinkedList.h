@@ -86,9 +86,14 @@ node *addafter(node *start, int data, int item)
 node *addbefore(node *start, int data, int item)
 {
     node *p, *tmp;
-
+    // List is empty 
+    if (start == NULL)
+    {
+        printf("List is empty\n");
+        return start;
+    }
     // If item is in the first node 
-    if (item ==  start->info)
+    if (item == start->info)
     {
         return addatbeg(start, data);
     }
@@ -183,8 +188,15 @@ node *reverse(node *start)
 // Function to print elements of a linked list
 void print_list(node *start)
 {
+    // List is empty 
+    if (start == NULL)
+    {
+        printf("List is empty\n");
+        return start;
+    }
+    
+    // Traversing the list
     node *ptr = start;
-
     while (ptr != NULL)
     {
         printf("%d ", ptr->info);
