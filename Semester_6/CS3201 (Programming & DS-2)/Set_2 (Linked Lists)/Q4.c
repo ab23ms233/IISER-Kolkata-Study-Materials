@@ -1,7 +1,6 @@
 // QUESTION
 // Consider that two sets are stored in two singly linked lists: L1: {1, 2, 3, 4, 5} and L2: {1, 5, 8, 9} (as examples). Store the intersection and union of these two sets in two new linked lists: L_intersect and L_union, respectively. Since the contents are sets, the order of the elements in the linked lists is not important.
 
-
 #include <stdio.h>
 #include "SinglyLinkedList.h"
 

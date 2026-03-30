@@ -1,6 +1,11 @@
+// QUESTION 5
+// A polynomial (e.g., 2x3 + 5x2 + 44) can be expressed as a singly linked list where each term (e.g., 2x3) is a node that stores the coefficient (2) and the exponent (3) along with the pointer. With this notion, implement the addition and multiplication of two such polynomials, each expressed as a singly linked list.
+
+
 #include <stdio.h>
 #include <stdlib.h>
 
+// Making node structure of Linked List
 typedef struct NODE
 {
     int coeff;
