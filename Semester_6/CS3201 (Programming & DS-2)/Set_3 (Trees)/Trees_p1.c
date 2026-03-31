@@ -10,7 +10,7 @@
     // 40  
 
 #include <stdio.h>
-#include "trees.h"
+#include "treetraversal.h"
 
 void main()
 {
