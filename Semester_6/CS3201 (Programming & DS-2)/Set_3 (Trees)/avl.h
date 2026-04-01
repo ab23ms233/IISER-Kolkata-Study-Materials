@@ -20,13 +20,22 @@ node *createNode(int key)
     return k;
 }
 
-// Function to get the height of the tree
+// Function to get the height of the node
+int getHeight(node *curr)
+{
+    if (curr == NULL)
+        return 0;
+    
+    return curr->height;
+}
+
+// Function to get the balance factor of the tree
 int getBalanceFactor(node *curr)
 {
     if (curr == NULL)
         return 0;
     
-    return curr->left->height - curr->right->height;
+    return getHeight(curr->left) - getHeight(curr->right);
 }
 
 // Function to find the maximum of two integers
@@ -59,8 +68,8 @@ node *rightRotate(node *y)
     x->right = y;
     y->left = T2;
 
-    y->height = max(y->right->height, y->left->height) + 1;
-    x->height = max(x->right->height, x->left->height) + 1;
+    y->height = max(getHeight(y->right), getHeight(y->left)) + 1;
+    x->height = max(getHeight(x->right), getHeight(x->left)) + 1;
     return x;
 }
 
@@ -84,8 +93,8 @@ node *leftRotate(node *x)
     y->left = x;
     x->right = T2;
 
-    y->height = max(y->right->height, y->left->height) + 1;
-    x->height = max(x->right->height, x->left->height) + 1;
+    y->height = max(getHeight(y->right), getHeight(y->left)) + 1;
+    x->height = max(getHeight(x->right), getHeight(x->left)) + 1;
     return y;
 }
 
@@ -102,5 +111,60 @@ node *insertNode(node *root, int key)
         root->left = insertNode(root->left, key);
     
     // Start updating the height of the all nodes from the current one to the root
-    root->height = 1 + max(root->left->height, root->right->height);
+    root->height = max(getHeight(root->right), getHeight(root->left)) + 1;
+    int bf = getBalanceFactor(root);
+
+    // Left left case
+    if (bf>1 && key<root->left->key)
+        return rightRotate(root);
+    // Right right case
+    else if (bf<-1 && key>root->right->key)
+        return leftRotate(root);
+    // Left right case
+    else if (bf>1 && key>root->left->key)
+    {
+        root->left = leftRotate(root->left);
+        return rightRotate(root);
+    }
+    // Right left case
+    else if (bf<-1 && key<root->right->key)
+    {
+        root->right = rightRotate(root->right);
+        return leftRotate(root);
+    }
+
+    return root;
+}
+
+// Function to perform preorder traversal of the binary tree (root -> left -> right)
+void preorder(node *root)
+{
+    if (root == NULL)
+        return;
+
+    printf("%d ", root->key);  // Visit the root node first
+    preorder(root->left);   // Then traverse the left subtree
+    preorder(root->right);  // Finally, traverse the right subtree
+}
+
+// Function to perform postorder traversal of the binary tree (left -> right -> root)
+void postorder(node *root)
+{
+    if (root == NULL)
+        return;
+
+    postorder(root->left);  // Traverse the left subtree first
+    postorder(root->right); // Then traverse the right subtree
+    printf("%d ", root->key);  // Finally, visit the root node
+}
+
+// Function to perform inorder traversal of the binary tree (left -> root -> right)
+void inorder(node *root)
+{
+    if (root == NULL)
+        return;
+
+    inorder(root->left);    // Traverse the left subtree first
+    printf("%d ", root->key);      // Then visit the root node
+    inorder(root->right);    // Finally, traverse the right subtree
 }
