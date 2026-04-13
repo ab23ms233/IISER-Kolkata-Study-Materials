@@ -3,6 +3,77 @@ from typing import Callable, Tuple, Union
 
 Scalar = Union[float, np.ndarray]
 
+# ROOT FINDING
+
+# Bisection
+def bisection(f, left: float, right: float, eps: float, maxiter: int = 100):
+  # Bad Interval
+  if f(left)*f(right) > 0:
+    print("Bad Interval")
+    return None
+
+  # If the roots are at the interval ends
+  if abs(f(left)) < eps:
+    return (left, 0)
+  if abs(f(right)) < eps:
+    return (right, 0)
+
+  mid = (left + right)/2
+  iter = 0
+  # Loops runs until the function value is within threshold or maxiterations are not reached
+  while abs(f(mid)) > eps and iter < maxiter:
+    iter += 1
+    # print(iter, f(mid))     # To print iteration and function value after each iteration
+
+    if f(left)*f(mid) < 0:    # Root in between left and mid
+      right = mid
+    else:                     # Root in between mid and right
+      left = mid
+
+    mid = (left + right)/2
+
+  # If maximum number of iterations are reached and root is not found
+  if iter == maxiter and abs(f(mid)) > eps:
+    print("Did not converge")
+    return None
+
+  # Else return root
+  return (mid, iter)
+
+# Secant
+def secant(f, x1: float, x2: float, eps: float, maxiter: int):
+  # Calculating intersection point
+  x3 = x2 - (f(x2)*(x2-x1)/(f(x2) - f(x1)))
+  iter = 0
+
+  # Loops runs until the function value is within threshold or maxiterations are not reached
+  while abs(f(x3)) > eps and iter < maxiter:
+    iter += 1
+    # print(iter, f(x3))
+
+    # Updating variables
+    x1, x2 = x2, x3
+    x3 = x2 - (f(x2)*(x2-x1)/(f(x2) - f(x1)))
+  return (x3, iter)
+
+# Newton-Raphson
+def newton_raphson(f, df, x1: float, eps: float, maxiter: int):
+  # Calculating intersection point
+  x2 = x1 - f(x1)/df(x1)
+  iter = 0
+
+  # Loops runs until the function value is within threshold or maxiterations are not reached
+  while abs(f(x2)) > eps and iter < maxiter:
+    iter += 1
+    # print(iter, f(x2))
+
+    # Updating variables
+    x1 = x2
+    x2 = x1 - f(x1)/df(x1)
+  return (x2, iter)
+
+
+
 # DIFFERENTIATION
 
 # Forward Difference
