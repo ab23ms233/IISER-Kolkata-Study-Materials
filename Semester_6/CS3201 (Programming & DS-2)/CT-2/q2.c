@@ -16,7 +16,7 @@ typedef struct Node
 // Function to create a new node with the given key
 node *createNode(int key)
 {
-    node *k = (node *) malloc(sizeof(node));
+    node *k = (node *)malloc(sizeof(node));
     k->key = key;
     k->height = 1;
     k->right = k->left = NULL;
@@ -42,7 +42,7 @@ int getBalanceFactor(node *curr)
 // Function to fund the maximum of 2 integers
 int max(int n1, int n2)
 {
-    return n1>n2?n1:n2;
+    return n1 > n2 ? n1 : n2;
 }
 
 // Function to update the height of all nodes of the tree
@@ -50,7 +50,7 @@ void updateHeight(node *root)
 {
     if (root == NULL)
         return;
-    
+
     updateHeight(root->left);
     updateHeight(root->right);
     root->height = max(getHeight(root->left), getHeight(root->right)) + 1;
@@ -73,15 +73,15 @@ int isAVL(node *root)
     // If we reach a leaf node or root is NULL
     if (root == NULL)
         return 1;
-    
+
     // Check whether the left and right subtrees are valid AVL trees or not
     if (!isAVL(root->left) || !isAVL(root->right))
         return 0;
 
     // Check the balance factor of the current node
-    int bf =  getBalanceFactor(root);
+    int bf = getBalanceFactor(root);
     // If the balance factor is less than -1 or greater than 1, then the AVL tree is not valid
-    if (bf<-1 || bf>1)      
+    if (bf < -1 || bf > 1)
         return 0;
 
     return 1;
@@ -99,7 +99,7 @@ void main()
     // root->right->left = createNode(21);
     root->left->right->left = createNode(14);
 
-    // Update the height of all nodes of the tree 
+    // Update the height of all nodes of the tree
     updateHeight(root);
     postorder(root);
     printf("\n");

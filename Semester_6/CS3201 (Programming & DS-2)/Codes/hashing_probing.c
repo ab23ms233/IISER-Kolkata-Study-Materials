@@ -2,7 +2,6 @@
 // the Quadratic Probing
 #include <stdio.h>
 
-
 // Function to print an array
 void printArray(int arr[], int n)
 {
@@ -17,7 +16,7 @@ void printArray(int arr[], int n)
 // Function to implement the
 // quadratic probing
 void hashing(int table[], int tsize,
-			int arr[], int N)
+			 int arr[], int N)
 {
 	int i, j, hv, t;
 	// Iterating through the array
@@ -29,18 +28,18 @@ void hashing(int table[], int tsize,
 		// Insert in the table if there
 		// is no collision
 		if (table[hv] == -1)
-			{
-				table[hv] = arr[i];
-				printf("%d inserted at %d!\n", arr[i], hv);
-			}
-			
+		{
+			table[hv] = arr[i];
+			printf("%d inserted at %d!\n", arr[i], hv);
+		}
+
 		else
 		{
 			// If there is a collision
 			// iterating through all
 			// possible quadratic values
 			printf("Collision for %d at %d!\n", arr[i], hv);
-			
+
 			for (j = 0; j < tsize; j++)
 			{
 				// Computing the new hash value
@@ -54,7 +53,7 @@ void hashing(int table[], int tsize,
 					printf("%d inserted at %d!\n", arr[i], t);
 					break;
 				}
-				
+
 				printf("Collision for %d at %d!\n", arr[i], t);
 			}
 		}
@@ -62,101 +61,84 @@ void hashing(int table[], int tsize,
 	printArray(table, tsize);
 }
 
-
 // Function to implement search using
 // quadratic probing
 void search(int table[], int tsize,
 			int key, int N)
 {
 	int i, j, hv, t, found = 0;
-	
-	
+
 	// Computing the hash value
 	hv = key % tsize;
 
-	
 	if (table[hv] == key)
+	{
+
+		printf("%d Found at %d!\n", key, hv);
+		found = 1;
+	}
+
+	else // collision
+	{
+
+		for (j = 0; j < tsize; j++)
 		{
-			
-			printf("%d Found at %d!\n", key, hv);
-			found = 1;
-		
-		}
-			
-		else //collision
-		{
-			
-			
-			for (j = 0; j < tsize; j++)
+			// Computing the new hash value
+			t = (hv + j * j) % tsize;
+			if (table[t] == key)
 			{
-				// Computing the new hash value
-				t = (hv + j * j) % tsize;
-				if (table[t] == key)
-				{
-					
-					printf("%d found at %d!\n", key, t);
-					found = 1;
-					break;
-				}
-				
-			
+
+				printf("%d found at %d!\n", key, t);
+				found = 1;
+				break;
 			}
 		}
-		
-		if(found == 0)
-		{
-			printf("Search failed!\n\n");
-		}
+	}
 
+	if (found == 0)
+	{
+		printf("Search failed!\n\n");
+	}
 }
 
-
-//Deletion using quadratic probing
+// Deletion using quadratic probing
 void deletion(int table[], int tsize,
-			int key, int N)
+			  int key, int N)
 {
 	int i, j, hv, t, found = 0;
 
-	
 	// Computing the hash value
 	hv = key % tsize;
 
-	
 	if (table[hv] == key)
+	{
+		table[hv] = -2; // Flag for deletion
+		printf("%d deleted at %d!\n", key, hv);
+		found = 1;
+	}
+
+	else // collision
+	{
+
+		for (j = 0; j < tsize; j++)
 		{
-			table[hv] = -2; //Flag for deletion
-			printf("%d deleted at %d!\n", key, hv);
-			found = 1;
-		
-		}
-			
-		else //collision
-		{
-			
-			
-			for (j = 0; j < tsize; j++)
+			// Computing the new hash value
+			t = (hv + j * j) % tsize;
+			if (table[t] == key)
 			{
-				// Computing the new hash value
-				t = (hv + j * j) % tsize;
-				if (table[t] == key)
-				{
-					table[t] = -2; //flag for deletion
-					printf("%d deleted at %d!\n", key, t);
-					found = 1;
-					break;
-				}
-				
-			
+				table[t] = -2; // flag for deletion
+				printf("%d deleted at %d!\n", key, t);
+				found = 1;
+				break;
 			}
 		}
-		
-		if(found == 0)
-		{
-			printf("Search failed!\n\n");
-		}
+	}
 
+	if (found == 0)
+	{
+		printf("Search failed!\n\n");
+	}
 }
-
 
 int main()
 {
@@ -164,7 +146,7 @@ int main()
 	int N = 8, i, L = 11;
 
 	// Size of the hash table
-	
+
 	int hash_table[11];
 
 	// Initializing the hash table
@@ -175,15 +157,12 @@ int main()
 
 	// Quadratic probing
 	hashing(hash_table, L, arr, N);
-	
-	//search(hash_table, L, 57, N);
-	
-	//deletion(hash_table, L, 50, N);
-	
-	//printf("After deletion:\n\n");
+
+	// search(hash_table, L, 57, N);
+
+	// deletion(hash_table, L, 50, N);
+
+	// printf("After deletion:\n\n");
 	printArray(hash_table, L);
 	return 0;
 }
-
-
-
