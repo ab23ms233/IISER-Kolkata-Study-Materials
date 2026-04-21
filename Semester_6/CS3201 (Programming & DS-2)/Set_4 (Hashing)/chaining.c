@@ -22,7 +22,7 @@ void print_table(node *arr[], int size)
 }
 
 // Function to create an empty hash table initialized with NULL
-void empty_hash_table(node* table[], int tsize)
+void empty_hash_table(node *table[], int tsize)
 {
     for (int i = 0; i < tsize; i++)
         table[i] = NULL;
@@ -35,7 +35,7 @@ void chaining(node *table[], int tsize, int arr[], int size)
     for (int i = 0; i < size; i++)
     {
         element = arr[i];
-        h = element % tsize;    // Hash value
+        h = element % tsize; // Hash value
         // Inserting element at the end of the linked list at the hash value index
         table[h] = insert(table[h], element);
         printf("%d inserted at position %d\n", element, h);
@@ -48,10 +48,10 @@ void chaining(node *table[], int tsize, int arr[], int size)
 // Returns the index of the element if found, otherwise returns -1
 int search(node *table[], int tsize, int key)
 {
-    int h = key%tsize;  // Hash value
+    int h = key % tsize; // Hash value
     node *p = table[h];
     // Traversing the linked list at the hash value index
-    while (p!=NULL)
+    while (p != NULL)
     {
         // If element is found
         if (p->info == key)
@@ -59,7 +59,7 @@ int search(node *table[], int tsize, int key)
             printf("%d found at position %d\n", key, h);
             return h;
         }
-        p = p->next;  
+        p = p->next;
     }
     // If element is not found in the hash table
     printf("%d not found in hash table\n", key);
@@ -69,7 +69,7 @@ int search(node *table[], int tsize, int key)
 // Function to delete an element from the hash table
 void delete(node *table[], int tsize, int key)
 {
-    int h = key%tsize;
+    int h = key % tsize;
     table[h] = del(table[h], key);
     print_table(table, tsize);
 }
@@ -79,8 +79,8 @@ void main()
     // Preparing the input array and hash table
     int m = 10;
     int arr[] = {12, 34, 21, 32, 25, 14, 31, 53, 64, 17, 29};
-    int size = sizeof(arr)/sizeof(arr[0]);
-    node* table[m];
+    int size = sizeof(arr) / sizeof(arr[0]);
+    node *table[m];
     empty_hash_table(table, m);
 
     // Inserting, searching and deleting elements from the hash table using chaining

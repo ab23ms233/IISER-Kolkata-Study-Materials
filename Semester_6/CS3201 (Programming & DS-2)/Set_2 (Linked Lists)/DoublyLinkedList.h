@@ -9,30 +9,30 @@ typedef struct NODE
     struct NODE *next;
 } node;
 
-// Function for adding data at the beginning of an empty list 
+// Function for adding data at the beginning of an empty list
 // node *addtoempty(node *start, int data)
 // {
-//     // Creating a new node for storing data. 
+//     // Creating a new node for storing data.
 //     node *tmp;
 //     tmp = (node *) malloc(sizeof(node));
 //     tmp->info = data;
 //     tmp->next = NULL;
 //     tmp->prev = NULL;
 
-//     // Assigning the tmp node as start 
+//     // Assigning the tmp node as start
 //     start = tmp;
 //     return start;
 // }
 
-// Function for adding data at the beginning of the list 
+// Function for adding data at the beginning of the list
 node *addatbeg(node *start, int data)
 {
     // Creating a new node for storing data
     node *tmp;
-    tmp = (node *) malloc(sizeof(node));
+    tmp = (node *)malloc(sizeof(node));
     tmp->info = data;
     tmp->prev = NULL;
-    tmp->next = start; 
+    tmp->next = start;
 
     if (start != NULL)
     {
@@ -44,16 +44,16 @@ node *addatbeg(node *start, int data)
     return start;
 }
 
-// Function for inserting data at the end of the list 
+// Function for inserting data at the end of the list
 node *insert(node *start, int data)
 {
     node *tmp;
 
-    // Creating a temporary node 
-    tmp = (node *) malloc(sizeof(node));
+    // Creating a temporary node
+    tmp = (node *)malloc(sizeof(node));
     tmp->info = data;
 
-    // List is empty 
+    // List is empty
     if (start == NULL)
     {
         tmp->prev = NULL;
@@ -62,14 +62,14 @@ node *insert(node *start, int data)
         return start;
     }
 
-    // Traversing the list 
+    // Traversing the list
     node *p = start;
     while (p->next != NULL)
     {
         p = p->next;
     }
 
-    // Adding tmp at the end 
+    // Adding tmp at the end
     tmp->prev = p;
     p->next = tmp;
     tmp->next = NULL;
@@ -82,20 +82,20 @@ node *addafter(node *start, int data, int item)
 {
     node *tmp, *p = start;
 
-    // List is empty  
+    // List is empty
     if (start == NULL)
     {
         printf("List is empty\n");
         return start;
     }
-    // Traversing the list 
+    // Traversing the list
     while (p != NULL)
     {
         // If element is found
         if (p->info == item)
         {
-            // Creating a temporary node 
-            tmp = (node *) malloc(sizeof(node));
+            // Creating a temporary node
+            tmp = (node *)malloc(sizeof(node));
             tmp->info = data;
             tmp->prev = p;
             tmp->next = p->next;
@@ -124,21 +124,21 @@ node *addafter(node *start, int data, int item)
 node *addbefore(node *start, int data, int item)
 {
     node *p = start;
-    // List is empty 
+    // List is empty
     if (start == NULL)
     {
         printf("List is empty\n");
         return start;
     }
 
-    // Traversing the list 
+    // Traversing the list
     while (p != NULL)
     {
         // If element is found
         if (p->info == item)
         {
             // Creating a temporary node
-            node *tmp = (node *) malloc(sizeof(node));
+            node *tmp = (node *)malloc(sizeof(node));
             tmp->info = data;
             tmp->next = p;
             tmp->prev = p->prev;
@@ -149,9 +149,9 @@ node *addbefore(node *start, int data, int item)
                 p->prev->next = tmp;
             }
             // Updating start if item is the first node
-            else    
+            else
             {
-                tmp ->prev = NULL;
+                tmp->prev = NULL;
                 start = tmp;
             }
             p->prev = tmp;
@@ -168,7 +168,7 @@ node *addbefore(node *start, int data, int item)
 // Function for deleting a node with info as data
 node *del(node *start, int data)
 {
-    // List is empty 
+    // List is empty
     if (start == NULL)
     {
         printf("List is empty\n");
@@ -182,14 +182,14 @@ node *del(node *start, int data)
         // If element is found
         if (p->info == data)
         {
-            // If node to be deleted is the only node 
+            // If node to be deleted is the only node
             if (p->next == NULL && p->prev == NULL)
             {
                 start = NULL;
                 free(p);
                 return start;
             }
-            // If node to be deleted is the last node 
+            // If node to be deleted is the last node
             else if (p->next == NULL)
             {
                 p->prev->next = NULL;
@@ -206,7 +206,7 @@ node *del(node *start, int data)
                 p->prev->next = p->next;
                 p->next->prev = p->prev;
             }
-            
+
             // Freeing the memory occupied by the node
             free(p);
             return start;
@@ -222,7 +222,7 @@ node *del(node *start, int data)
 // Function to display elements of the list
 void display(node *start)
 {
-    // List is empty 
+    // List is empty
     if (start == NULL)
     {
         printf("List is empty\n");
