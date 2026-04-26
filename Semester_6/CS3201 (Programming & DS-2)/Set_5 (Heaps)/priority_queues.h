@@ -1,6 +1,6 @@
 // MAX HEAP IMPLEMENTATION
 #include <stdio.h>
-#include "heaps.h"
+#include "max_heaps.h"
 
 // Function to get the index of the parent of a node
 int parent(int index)
@@ -24,11 +24,11 @@ int extract_max(int arr[], int *size)
         printf("No elements in queue\n");
         return -1;
     }
-        
     // Extracting max element and restoring the max heap property
     int max = arr[0];
-    arr[0] = arr[*size-1];
+    arr[0] = arr[(*size)-1];
     (*size)--;
+    // print_array(arr, *size);
     maxHeapify(arr, *size, 0);
     return max;
 }
