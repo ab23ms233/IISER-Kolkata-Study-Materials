@@ -1,0 +1,183 @@
+## 1. Introduction
+
+To solve any utility-scale quantum problem, we will need to move information around on a quantum computer from one qubit to another. There are well-known protocols for doing this, but some of the most foundational were cast in the context of sending information between distant parties. Throughout this lesson, we will sometimes use language consistent with this context, such as "distant friends sending information". But keep in mind that these protocols have broader significance in quantum computing. In this lesson we consider the following quantum communication protocols:
+
+* **Quantum teleportation**
+  Using a shared entangled state (sometimes called an e-bit) to send an unknown quantum state to a distant friend, requiring supplemental classical communication.
+* **Quantum superdense coding**
+  How to send two bits of information by sending a single qubit to a distant friend (again using prior shared entangled qubits).
+
+For more background relevant to these topics, we recommend lesson 4 in Basics of Quantum Information on [Entanglement in action](/learning/courses/basics-of-quantum-information/entanglement-in-action/introduction).
+
+In the above description, an "unknown quantum state" simply refers to a state of the form described in the previous lesson:
+
+$$
+|\psi\rangle =\alpha|0\rangle+\beta|1\rangle
+$$
+
+where $\alpha$ and $\beta$ are complex numbers such that $|\alpha|^2+|\beta|^2 = 1$.  This allows us to write the quantum state as
+
+$$
+|\psi\rangle =\cos\frac{\theta}{2}|0\rangle+e^{i\varphi}\sin\frac{\theta}{2}|1\rangle=
+\left(
+\begin{matrix}
+\cos\frac{\theta}{2}\\
+e^{i\varphi}\sin\frac{\theta}{2}
+\end{matrix}
+\right)
+$$
+
+Since we want to be able to transfer the information in any random quantum state, generating such a state is where we will begin this lesson.
+
+## 2. Density matrices
+
+We can also write the quantum state $|\psi \rangle$ as its density matrix. This form is useful for denoting probabilistic mixture
+of pure quantum states. In the case of a single qubit, we can write
+
+$$
+|\psi \rangle \langle \psi| \equiv  \rho =
+\begin{pmatrix}
+\cos\frac{\theta}{2}\\
+e^{i\varphi}\sin\frac{\theta}{2}
+\end{pmatrix}
+
+\begin{pmatrix}
+\cos\frac{\theta}{2} & e^{-i\varphi}\sin\frac{\theta}{2}
+\end{pmatrix}
+=\frac{1}{2}\begin{pmatrix}
+1+\cos\theta & e^{-i\varphi}\sin\theta\\
+e^{-i\varphi}\sin\theta & 1-\cos\theta
+\end{pmatrix}
+$$
+
+Note that the density matrix $\rho$ is a linear summation of Pauli matrices, as below,
+
+$$
+\rho = \frac{1}{2}\bigl( \textbf{I} + (\sin{\theta}\cos{\varphi})\textbf{X}+  (\sin{\theta}\sin{\varphi})\textbf{Y} +  (\cos{\theta})\textbf{Z} \bigr)
+$$
+
+Or, in general,
+
+$$
+\rho = \frac{1}{2}(\textbf{I} + r_{x}\textbf{X}+ r_{y}\textbf{Y} + r_{z}\textbf{Z})
+$$
+
+where
+$r_{x}^2+r_{y}^2+r_{z}^2=1$.
+
+And, the Bloch vector is $\textbf{r} = (r_{x}, r_{y}, r_{z})$.
+
+Now, let's make an arbitrary quantum state using random numbers.
+
+## 3. Quantum state tomography
+
+If you only measure the quantum state in the computational basis ($|0 \rangle$ and  $|1 \rangle$), the phase information (the complex number information) will be lost. But if we have many copies of $|\psi \rangle$ by repeating the preparation process (we can't clone states, but we can repeat preparation processes), we can estimate the value of $r_{x}, r_{y}, r_{z}$ by performing *quantum state tomography* for density matrix $\rho$. Given the form:
+
+$$
+\rho = \frac{1}{2}(\textbf{I} + r_{x}\textbf{X}+ r_{y}\textbf{Y} + r_{z}\textbf{Z})
+$$
+
+it holds that
+
+$$
+Tr(\textbf{X} \rho) =  r_{x}, \quad Tr(\textbf{Y} \rho) =  r_{y}, \quad Tr(\textbf{Z} \rho) =  r_{z}
+$$
+
+In $r_{z}$ case,
+
+$$
+Tr(\textbf{Z} \rho) =  \langle 0|\textbf{Z} \rho|0 \rangle +  \langle 1|\textbf{Z} \rho|1 \rangle
+$$
+
+$$
+= \langle 0|(|0 \rangle\langle 0|-|1 \rangle\langle 1|) \rho|0 \rangle +\langle 1|(|0 \rangle\langle 0|-|1 \rangle\langle 1|) \rho|1 \rangle
+$$
+
+$$
+=\langle 0|\rho|0 \rangle- \langle 1| \rho|1 \rangle
+$$
+
+$$
+=\langle 0|\psi\rangle\langle \psi|0 \rangle -  \langle 1| \psi\rangle\langle \psi|1 \rangle
+$$
+
+$$
+=|\alpha|^2-|\beta|^2
+$$
+
+The last transformation of the equation is for $|\psi \rangle  =\alpha|0\rangle+\beta|1\rangle$. Therefore, we can obtain $r_{z}$ by probability of $|0 \rangle$  - Probability of $|1 \rangle$.
+
+### Estimate $r_z$ value
+
+In order to estimate $r_z$, we create a quantum state and measure it. We then repeat the preparation and measurement many times. Finally we use the statistics of the measurement to estimate the probabilities above and thus estimate $r_z$.
+
+For creating the random quantum state, we will use the general unitary gate $U$ with the parameters $ \theta, \varphi$. (Refer to [U-gate](/docs/api/qiskit/qiskit.circuit.library.UGate) for more information.)
+
+## 4. Quantum teleportation
+
+Let us consider the situation when a character Alice wants to send an unknown quantum state $|\psi \rangle$ to her friend Bob, who is far away. Assume they can only communicate with classical communication (like using email or a phone). Alice cannot copy the quantum state (due to the no-cloning theorem). If she repeated the same preparation process many times, she could build up statistics as we just did. But what if there is only a single unknown state? This state might have emerged from a physical process you want to study. Or it could be part of a larger quantum computation. In that case, how could Alice send the state to Bob? She can, if she and Bob share a valuable quantum resource: a shared entangled state, like the Bell state introduced in the previous lesson: $\frac {|00\rangle + |11\rangle}{\sqrt 2}.$ You might sometimes also see this referred to as an "EPR pair" or an "e-bit" (a fundamental unit of entanglement). If Alice shares such an entangled state with Bob, she can *teleport* the unknown quantum state to Bob by performing a series of quantum operations and sending him two bits of classical information.
+
+### 4.1 The protocol of Quantum teleportation
+
+**Assumption**: Alice has an unknown quantum state $|\psi \rangle$ to be sent to Bob. Alice and Bob shares a 2-qubit entangled state, or e-bit, each having one of the qubits physically at their location.
+
+Here we outline the procedure without explanation. These will be implemented in detail below.
+
+1. Alice entangles $|\psi \rangle$  with her part of the e-bit using the CNOT gate.
+2. Alice applies a Hadamard gate to $|\psi \rangle$, and measures both her qubits in the computational basis.
+3. Alice sends Bob her measurement results (either “00”, “01”, “10”, or “11”)
+4. Bob performs a *correction* operator based on Alice’s two-bit of information on his part of the e-bit pair.
+   * If “00”, Bob does nothing
+   * If “01”, Bob applies X gate
+   * If “10”, Bob applies Z gate
+   * If “11”, Bob applies iY = ZX gate
+5. Bob's part of the e-bit becomes $|\psi \rangle$.
+
+This is also worked out in more detail in [Basics of Quantum Information](/learning/courses/basics-of-quantum-information/entanglement-in-action/introduction). But the situation will become more clear as we instantiate this in Qiskit.
+
+
+## 5. Superdense coding
+
+Almost the same setup can be used for a different purpose. Suppose Alice wants to send Bob two bits of classical information, but she has no means of classical communication with Bob. She does, however, share an entangled pair with Bob and she is allowed to send her qubit to Bob's location. Notice the contrast with the quantum teleportation protocol. In teleportation, classical communication *was* available to the friends, and the goal was to send a quantum state. Here, classical communication is not accessible and they use the transfer of a qubit to share two bits of classical information.
+
+### 5.1 The protocol of superdense coding
+
+**Assumption**: Alice has two bits of information, say, $a_1a_2 \in \{00, 01, 10, 11\}$. Alice and Bob share an entangled pair (e-bit), but they cannot communicate classically.
+
+1. Alice performs one of the following operations on her part of e-bit.
+   * If $a_1a_2 = 00$, she does nothing
+   * If $a_1a_2 = 01$, she applies Z gate
+   * If $a_1a_2 = 10$, she applies X gate
+   * If $a_1a_2 = 11$, she applies Z gate and X gate.
+2. Alice sends her part of the e-bit to Bob's location.
+3. Bob applies a CNOT gate with the qubit from Alice as control and his qubit as target, then applies H gate to the qubit from Alice, and measures the two qubits. The possible starting states and results of Bob's operations are:
+
+$$
+\frac {|00\rangle + |11\rangle}{\sqrt 2} \rightarrow CX_{01}\otimes H_0 \rightarrow |00\rangle
+$$
+
+$$
+\frac {|00\rangle - |11\rangle}{\sqrt 2} \rightarrow CX_{01}\otimes H_0 \rightarrow |01\rangle
+$$
+
+$$
+\frac {|10\rangle + |01\rangle}{\sqrt 2} \rightarrow CX_{01}\otimes H_0 \rightarrow |10\rangle
+$$
+
+$$
+\frac {|10\rangle - |01\rangle}{\sqrt 2} \rightarrow CX_{01}\otimes H_0 \rightarrow -|11\rangle
+$$
+
+Note that a negative sign of $-|11\rangle$ is global phase, so it is not measurable.
+
+## 6. Summary
+
+In this session, we have implemented two quantum protocols. Although the scenarios for both involving distant friends are somewhat removed from quantum computing on a single QPU, they have applications in quantum computing, and help us understand the transfer of quantum information better.
+
+* **Quantum teleportation**: Although we cannot copy quantum states, we can teleport unknown quantum states by having shared entanglement.
+* **Quantum superdense coding**: A shared entangled pair, and transfer of one qubit, enable the communication of two bits of classical information.
+
+
+
+
+
